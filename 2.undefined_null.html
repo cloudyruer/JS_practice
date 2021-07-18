@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>undefined vs null</h2>
+    <script>
+      console.log(typeof undefined); //undefined
+      console.log(undefined + 1); // NaN
+
+      console.log(typeof null); // object
+
+      console.log("!!null", !!null); //false
+      console.log("!!undefined", !!undefined); //false
+
+      //  == check only value
+      console.log("null == undefined", null == undefined); //true
+
+      //  === check value & type
+      console.log("null === undefined", null === undefined); //false
+
+      //  'null' would be converted to 0 behind the screens
+      console.log(null + 1); // 1
+      //////////////////////////
+      //annther example: N年的薪水
+      let monthly_pay = 1000;
+      let month = 12;
+      let year;
+
+      const total = () => monthly_pay * month * year;
+      console.log(total()); // NaN -> didn't defined year value, year=undefined
+      console.log(year); //undefined
+
+      // version 2 with null
+      let year_null = null;
+      const total_null = () => monthly_pay * month * year_null;
+      console.log(total_null()); //0
+      console.log(year_null); //null -> would be converted to 0 behind the screens
+
+      // null object
+      // 以前的js 32 bit 中前 3bit 為type tag
+      // 而object 前三位都是0
+      // 而null 為全0
+      // 因為null 會被判斷為 object
+    </script>
+  </body>
+</html>
