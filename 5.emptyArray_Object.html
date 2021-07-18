@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //While [] equals false, it evaluates to true.
+      // array is just a particular type of object
+      // The empty object is not undefined!! It even has some properties
+      console.log(typeof []); //object
+      console.log(typeof {}); //object
+      // true
+      console.log(Boolean([])); //true remind once again: It even has some properties
+      console.log(Boolean({})); //true
+      console.log("---------------");
+      // false
+      console.log(Boolean("")); //false
+      console.log(Boolean(null)); //false
+      console.log(Boolean(undefined)); //false
+      console.log("---------------");
+
+      //   convert
+      const a = [1];
+      console.log(a == false); //false
+      console.log([] == false); //true
+      // object == booleam
+      // object == number
+      // string == number  ps. arr.toString() is called, which returns empty strings ""
+      // number == number
+
+      console.log([] === false); //false different type
+      console.log("---------------");
+
+      console.log([] == ![]); //true, same as [] == false
+      console.log([] === ![]); //false different type
+
+      //   === type and value, object vs boolean
+      console.log(typeof ![]); //boolean
+      console.log(![]); //false
+      console.log(typeof NaN); //number
+      //
+
+      //   ref: https://262.ecma-international.org/5.1/#sec-11.9.3
+
+      //   ref: https://stackoverflow.com/questions/4226101/conflicting-boolean-values-of-an-empty-javascript-array
+
+      var arr = [];
+      console.log("Array:", arr);
+      if (arr) console.log("It's true!"); //It's true -> array, It even has some properties
+      if (arr == false) console.log("It's false!"); //It's true -> convert: compare value
+      if (arr && arr == false) console.log("...what??"); //...what??  arr && arr -> arr , arr == false
+      //   ref: https://stackoverflow.com/questions/5491605/empty-arrays-seem-to-equal-true-and-false-at-the-same-time
+    </script>
+  </body>
+</html>
