@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="tar_1">Needs Sth Here Tho</div>
+    <div class="tar_1">Needs Sth Here Tho</div>
+    <div class="tar_1">Needs Sth Here Tho</div>
+
+    <textarea class="tar_2">tar 2 is here!!!</textarea>
+    <textarea class="tar_2">tar 2 is here!!!</textarea>
+    <textarea class="tar_2">tar 2 is here!!!</textarea>
+
+    <script>
+      document.querySelector(".tar_1").innerHTML = "Replace by innerHtml";
+      const a = document.querySelector(".tar_2");
+      const b = document.querySelectorAll(".tar_2");
+      console.log(typeof b);
+      console.log(b);
+      console.log([...b]);
+      //   b.map((b) => (b.value = "123"));
+      console.log(...b);
+      [...b].map((b) => (b.value = "123"));
+      console.log(NodeList.prototype); // NodeList 當中有 forEach!!!
+      console.log(Array.prototype);
+      //   ref: https://stackoverflow.com/questions/8823498/setting-innerhtml-vs-setting-value-with-javascript
+    </script>
+  </body>
+</html>

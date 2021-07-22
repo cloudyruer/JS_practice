@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Clock</title>
+    <style>
+      .clock {
+        position: relative;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background-color: aqua;
+      }
+
+      .hand {
+        position: absolute;
+        left: 300px;
+        top: 300px;
+      }
+
+      .sec-hand {
+        position: absolute;
+        width: 4px;
+        height: 280px;
+        border-radius: 2px;
+        background-color: #f00;
+        /* 4px 一半 */
+        left: -2px;
+        top: -278px;
+      }
+
+      .min-hand {
+        position: absolute;
+        width: 10px;
+        height: 220px;
+        border-radius: 5px;
+        background-color: rgb(17, 0, 255);
+        left: -5px;
+        top: -215px;
+      }
+
+      .hr-hand {
+        position: absolute;
+        width: 14px;
+        height: 170px;
+        border-radius: 7px;
+        left: -7px;
+        top: -163px;
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <!-- 時 -->
+      <div class="hand hrHand">
+        <div class="hr-hand"></div>
+      </div>
+      <!-- 分 -->
+      <div class="hand minHand">
+        <div class="min-hand"></div>
+      </div>
+
+      <!-- 秒 -->
+      <div class="hand secHand">
+        <div class="sec-hand"></div>
+      </div>
+    </div>
+
+    <script>
+      const secHand = document.querySelector('.secHand');
+      const minHand = document.querySelector('.minHand');
+      const hrHand = document.querySelector('.hrHand');
+
+      const runClock = () => {
+        const now = new Date();
+
+        secHand.style.transform = `rotate(${
+          now.getSeconds() * 6 + now.getMilliseconds() * 0.006
+        }deg)`;
+        minHand.style.transform = `rotate(${now.getMinutes() * 6}deg)`;
+
+        // 調整部分: 60分鐘需要調整30度(360/12) 所以1分鐘需要調整0.5度(30/60)
+        hrHand.style.transform = `rotate(${
+          now.getHours() * 30 + now.getMinutes() * 0.5
+        }deg)`;
+
+        setTimeout(runClock, 30);
+      };
+
+      runClock();
+    </script>
+  </body>
+</html>
