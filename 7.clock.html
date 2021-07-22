@@ -78,6 +78,7 @@
         const now = new Date();
 
         secHand.style.transform = `rotate(${
+          // 1000毫秒 = 1秒  一秒6度 所以一毫秒補正0.006度 (6/1000)
           now.getSeconds() * 6 + now.getMilliseconds() * 0.006
         }deg)`;
         minHand.style.transform = `rotate(${now.getMinutes() * 6}deg)`;
