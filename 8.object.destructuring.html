@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>104. Destructuring Objects</title>
+  </head>
+  <body>
+    <h2>From 104. Destructuring Objects</h2>
+
+    <script>
+      // Data needed for first part of the section
+      const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: [
+          'Focaccia',
+          'Bruschetta',
+          'Garlic Bread',
+          'Caprese Salad',
+        ],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        openingHours: {
+          thu: {
+            open: 12,
+            close: 22,
+          },
+          fri: {
+            open: 11,
+            close: 23,
+          },
+          sat: {
+            open: 0, // Open 24 hours
+            close: 24,
+          },
+        },
+        // for the last example
+        // starterIndex=1 -> default value =1;git add .
+
+        orderDelivery: function ({
+          starterIndex = 1,
+          mainIndex = 0,
+          time = '20:00',
+          address,
+        }) {
+          console.log(
+            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+          );
+        },
+      };
+      ////NOTE start///////////////
+
+      //KEY order in object is not important
+      const { name, openingHours, categories } = restaurant;
+      console.log(name, openingHours, categories);
+      // name-> Classico Italiano
+      // openingHours -> {thu:{...},fri:{...},sat{...}}
+      // categories -> ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+
+      /////////////////////////////
+      //KEY rename
+      const {
+        name: restaurantName,
+        openingHours: hours,
+        categories: tags,
+      } = restaurant;
+      console.log(restaurantName, hours, tags);
+      //   same as the  console.log(name, openingHours, categories);
+      ///////////////////////////////////
+      //KEY default, otherwise if there is no menu, =>undefined
+      const { menu = [], starterMenu: starters = [] } = restaurant;
+      console.log(menu); // [] -> there is no menu, so use the default []
+      console.log(starters); //["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
+      /////////////////////////////////////
+      //KEYMutating variables
+      let a = 111;
+      let b = 999;
+      const obj = { a: 23, b: 7, c: 14 };
+      ({ a, b } = obj); // NOTE without (), js would consider code block
+      console.log(a, b); // a 23 , b 7
+      ///////////////////////////////////////
+      //KEY nested objects
+      const { fri } = openingHours; //openingHours get from the 1st example
+      console.log(fri); // {open: 11, close: 23}
+
+      const {
+        sat: { open: op, close: cl },
+      } = openingHours;
+
+      console.log(op, cl); // op 0 , cl 25
+      //////////////////////////////////////////
+      //KEY real life example
+      restaurant.orderDelivery({
+        time: '22:30',
+        address: 'Via del Sole, 21',
+        mainIndex: 2,
+        starterIndex: 2,
+      });
+      //Order received! Garlic Bread and Risotto will be delivered to Via del Sole, 21 at 22:30
+    </script>
+  </body>
+</html>
